@@ -10,10 +10,14 @@ export HISTCONTROL=ignoreboth:erasedupes
 
 # make colors
 export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
 # show or hide hidden files
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+alias show='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hide='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+
+# empty trash
+alias trash='sudo rm -rf ~/.Trash/*'
 
 # directory access shortcuts
 alias desk='cd ~/Desktop/'
@@ -44,3 +48,8 @@ alias apacher='sudo apachectl graceful'
 alias httpd='atom /etc/apache2/httpd.conf'
 alias hosts='atom /etc/hosts'
 alias vhosts='atom /private/etc/apache2/extra/httpd-vhosts.conf'
+
+source ~/.git-completion.bash
+source ~/.git-prompt.sh
+GIT_PS1_SHOWDIRTYSTATE=true
+export PS1="\u@\h:\[$(tput sgr0)\]\[\033[38;5;11m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]\$(__git_ps1) \\$ \[$(tput sgr0)\]"
