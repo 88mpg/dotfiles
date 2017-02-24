@@ -25,6 +25,11 @@ alias down='cd ~/Downloads/'
 alias user='cd ~/'$USERNAME'/'
 alias www='cd ~/www/'
 
+# HUM specific
+alias hum='cd ~/www/verizon-aem-hum-com/hum/hum.fe.redesign'
+alias aem='cd ~/www/verizon-aem-author/author && java -XX:MaxPermSize=256m -Xmx1024M -jar cq6-author-p4502.jar'
+alias faq='cd ~/www/verizon-aem-hum-com/hum/ui.content/src/main/content/jcr_root/content/hum/en/faqs/'
+
 # alias for going back
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -50,6 +55,7 @@ alias hosts='atom /etc/hosts'
 alias vhosts='atom /private/etc/apache2/extra/httpd-vhosts.conf'
 
 source ~/.git-completion.bash
-source ~/.git-prompt.sh
-GIT_PS1_SHOWDIRTYSTATE=true
-export PS1="\u@\h:\[$(tput sgr0)\]\[\033[38;5;11m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]\$(__git_ps1) \\$ \[$(tput sgr0)\]"
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+export PS1="\[\033[38;5;11m\]\w\\[\033[38;5;15m\]\\n\u\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
